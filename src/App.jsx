@@ -7,6 +7,10 @@ function App() {
   
   const [films, setFilms] =  useState([])
   const [searchTerms, setSearchTerms] = useState('')
+  const api_key = import.meta.env.VITE_KEY
+  const api_url = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}
+&query=${searchTerms}`
+  
   
   const handleSearch = () => {
     if (searchTerms.trim() === '') {
@@ -14,8 +18,7 @@ function App() {
       return;
     }
   
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=53633f25df0de94ef08fd28009d6d9e5
-&query=${searchTerms}`)
+    fetch(api_url)
     .then(res => res.json())
     .then(data =>{
       console.log(data.results); 
