@@ -8,18 +8,20 @@ function App() {
 
   const [films, setFilms] = useState([])
   const [searchTerms, setSearchTerms] = useState('')
+  const [series, setSeries] = useState([])
   const api_key = import.meta.env.VITE_KEY
-  const api_url = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}
-&query=${searchTerms}`
+  const films_api_url = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${searchTerms}`
+  const series_api_url = `https://api.themoviedb.org/3/search/tv?api_key=${api_key}&query=${searchTerms}`
 
 
   const handleSearch = () => {
     if (searchTerms.trim() === '') {
       setFilms([]);
+      setSeries([]);
       return;
     }
-
-    fetch(api_url)
+    // ricerca film
+    fetch(films_api_url)
       .then(res => res.json())
       .then(data => {
         console.log(data.results);
@@ -29,7 +31,23 @@ function App() {
         console.error('Errore durante la ricerca', error);
 
       });
+
+    // ricerca sereie tv
+    fetch(series_api_url)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data.results);
+        setSeries(data.results)
+      })
+      .catch(error => {
+        console.error('Errore durante la ricerca', error);
+
+      })
   };
+
+
+
+
 
   function countryFlag(flag) {
     if (flag == 'ja') {
@@ -64,7 +82,7 @@ function App() {
         <div className="section m-5">
           <div className="container">
             <div className="form">
-              <input className="form-control-lg m-2" type="text" value={searchTerms} onChange={(e) => setSearchTerms(e.target.value)} placeholder='Cerca un film' />
+              <input className="form-control-lg m-2 p-2" type="text" value={searchTerms} onChange={(e) => setSearchTerms(e.target.value)} placeholder='Cerca un film o una serie TV' />
               <button className="btn btn-primary btn-lg " href="#" role="button" onClick={handleSearch}>Cerca</button>
             </div>
             <h2>Risultati: </h2>
@@ -80,6 +98,19 @@ function App() {
                       <p>Lingua: <ReactCountryFlag className="emojiFlag" countryCode={countryFlag(film.original_language)} svg /></p>
 
                       <p>Voto: {film.vote_average}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {series.map(serie => (
+                <div className="col" key={serie.id}>
+                  <div className="card">
+                    <img className="card-img-top" src={`https://image.tmdb.org/t/p/w342${serie.poster_path}`} alt={serie.name} />
+                    <div className="card-body">
+                      <h4>{serie.name}</h4>
+                      <p className='fs-3'>Titolo Originale: {serie.original_name}</p>
+                      <p>Lingua: <ReactCountryFlag className="emojiFlag" countryCode={countryFlag(serie.original_language)} svg /></p>
+                      <p>Voto: {serie.vote_average}</p>
                     </div>
                   </div>
                 </div>
