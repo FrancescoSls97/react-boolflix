@@ -68,12 +68,79 @@ function App() {
     return flag;
   }
 
+  function starRate(Number) {
+    if (Number === 1) {
+      return (
+        <p>
+
+          <i className="fa-solid fa-star text-warning"></i>
+          <i className="fa-regular fa-star text-warning"></i>
+          <i className="fa-regular fa-star text-warning"></i>
+          <i className="fa-regular fa-star text-warning"></i>
+          <i className="fa-regular fa-star text-warning"></i>
+
+        </p>
+      )
+    }
+    else if (Number === 2) {
+      return (
+        <p>
+
+          <i className="fa-solid fa-star text-warning"></i>
+          <i className="fa-solid fa-star text-warning"></i>
+          <i className="fa-regular fa-star text-warning"></i>
+          <i className="fa-regular fa-star text-warning"></i>
+          <i className="fa-regular fa-star text-warning"></i>
+
+        </p>
+      )
+    }
+    else if (Number === 3) {
+      return (
+        <p>
+
+          <i className="fa-solid fa-star text-warning"></i>
+          <i className="fa-solid fa-star text-warning"></i>
+          <i className="fa-solid fa-star text-warning"></i>
+          <i className="fa-regular fa-star text-warning"></i>
+          <i className="fa-regular fa-star text-warning"></i>
+
+        </p>
+      )
+    }
+    else if (Number === 4) {
+      return (
+        <p>
+
+          <i className="fa-solid fa-star text-warning"></i>
+          <i className="fa-solid fa-star text-warning"></i>
+          <i className="fa-solid fa-star text-warning"></i>
+          <i className="fa-solid fa-star text-warning"></i>
+          <i className="fa-regular fa-star text-warning"></i>
+
+        </p>
+      )
+    }
+    else if (Number === 5) {
+      return (
+        <p>
+
+          <i className="fa-solid fa-star text-warning"></i>
+          <i className="fa-solid fa-star text-warning"></i>
+          <i className="fa-solid fa-star text-warning"></i>
+          <i className="fa-solid fa-star text-warning"></i>
+          <i className="fa-solid fa-star text-warning"></i>
+
+        </p>
+      )
+    }
+  }
 
 
   return (
     <>
       <header>
-        <nav className="navbar bg-body-tertiary">
+        <nav className="navbar m-4">
           <div className="container">
             <a href="https://fontmeme.com/fonts/one-piece-manga-font/"><img src="https://fontmeme.com/permalink/250729/f31b4a3dfbe193545ccbe23920ec7db0.png" alt="one-piece-manga-font" border="0" /></a>
           </div>
@@ -84,9 +151,9 @@ function App() {
           <div className="container">
             <div className="form">
               <input className="form-control-lg m-2 p-2" type="text" value={searchTerms} onChange={(e) => setSearchTerms(e.target.value)} placeholder='Cerca un film o una serie TV' />
-              <button className="btn btn-primary btn-lg " href="#" role="button" onClick={handleSearch}>Cerca</button>
+              <button className="btn btn-primary btn-lg " role="button" onClick={handleSearch}>Cerca</button>
             </div>
-            <h2>Risultati: </h2>
+
             <div className="row row-cols-1 row-cols-md-3 g-4">
               {films.map(film => (
                 <div className="col" key={film.id}>
@@ -98,7 +165,8 @@ function App() {
 
                       <p>Lingua: <ReactCountryFlag className="emojiFlag" countryCode={countryFlag(film.original_language)} svg /></p>
 
-                      <p>Voto: {Math.ceil(film.vote_average) / 2}/5 </p>
+                      <div>Voto: {starRate(Math.ceil(film.vote_average) / 2)}</div>
+
                     </div>
                   </div>
                 </div>
@@ -111,7 +179,7 @@ function App() {
                       <h4>{serie.name}</h4>
                       <p className='fs-3'>Titolo Originale: {serie.original_name}</p>
                       <p>Lingua: <ReactCountryFlag className="emojiFlag" countryCode={countryFlag(serie.original_language)} svg /></p>
-                      <p>Voto: {Math.ceil(serie.vote_average) / 2}/5</p>
+                      <div> Voto: {starRate(Math.ceil(serie.vote_average) / 2)} </div>
                     </div>
                   </div>
                 </div>
