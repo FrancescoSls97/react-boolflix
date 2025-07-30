@@ -13,3 +13,24 @@ header{
 body{
     background-color: gray;
 }
+
+.card {
+
+    position: relative;
+}
+.card-body{
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity .3s;
+}
+
+.card:hover{
+    .card-body{
+    /*display: block;*/
+    opacity: 100%;
+    color: #fff;
+    background: #000;
+    }
+}

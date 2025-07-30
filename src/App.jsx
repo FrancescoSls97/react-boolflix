@@ -70,7 +70,21 @@ function App() {
   }
 
   function starRate(Number) {
-    if (Number === 1) {
+    if (Number === 0) {
+      return (
+        <p>
+
+          <i className="fa-regular fa-star text-warning"></i>
+          <i className="fa-regular fa-star text-warning"></i>
+          <i className="fa-regular fa-star text-warning"></i>
+          <i className="fa-regular fa-star text-warning"></i>
+          <i className="fa-regular fa-star text-warning"></i>
+
+        </p>
+      )
+    }
+
+    else if (Number === 1) {
       return (
         <p>
 
@@ -158,14 +172,12 @@ function App() {
                 <div className="col" key={film.id}>
                   <div className="card h-100">
                     <img className="card-img-top" src={`https://image.tmdb.org/t/p/w342${film.poster_path}`} alt={film.title} />
-                    <div className="card-body">
-                      <h4>{film.title}</h4>
-                      <p className='fs-5'>Titolo Originale: {film.original_title}</p>
-
+                    <div className="card-body h-100">
+                      <p>{film.title}</p>
+                      <p>Titolo Originale: {film.original_title}</p>
                       <p>Lingua: <ReactCountryFlag className="emojiFlag" countryCode={countryFlag(film.original_language)} svg /></p>
-
-                      <div>Voto: {starRate(Math.ceil(film.vote_average) / 2)}</div>
-
+                      <div>{starRate(Math.ceil(film.vote_average) / 2)}</div>
+                      <p>{film.overview}</p>
                     </div>
                   </div>
                 </div>
@@ -174,11 +186,12 @@ function App() {
                 <div className="col" key={serie.id}>
                   <div className="card h-100">
                     <img className="card-img-top" src={`https://image.tmdb.org/t/p/w342${serie.poster_path}`} alt={serie.name} />
-                    <div className="card-body">
-                      <h4>{serie.name}</h4>
+                    <div className="card-body h-100">
+                      <p>{serie.name}</p>
                       <p className='fs-3'>Titolo Originale: {serie.original_name}</p>
                       <p>Lingua: <ReactCountryFlag className="emojiFlag" countryCode={countryFlag(serie.original_language)} svg /></p>
-                      <div> Voto: {starRate(Math.ceil(serie.vote_average) / 2)} </div>
+                      <div> {starRate(Math.ceil(serie.vote_average) / 2)} </div>
+                      <p>{serie.overview}</p>
                     </div>
                   </div>
                 </div>
