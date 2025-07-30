@@ -15,6 +15,7 @@ function App() {
 
 
   const handleSearch = () => {
+
     if (searchTerms.trim() === '') {
       setFilms([]);
       setSeries([]);
@@ -47,8 +48,6 @@ function App() {
 
 
 
-
-
   function countryFlag(flag) {
     if (flag == 'ja') {
       return 'jp';
@@ -68,6 +67,8 @@ function App() {
 
     return flag;
   }
+
+
 
   return (
     <>
@@ -97,7 +98,7 @@ function App() {
 
                       <p>Lingua: <ReactCountryFlag className="emojiFlag" countryCode={countryFlag(film.original_language)} svg /></p>
 
-                      <p>Voto: {film.vote_average}</p>
+                      <p>Voto: {Math.ceil(film.vote_average) / 2}/5 </p>
                     </div>
                   </div>
                 </div>
@@ -110,7 +111,7 @@ function App() {
                       <h4>{serie.name}</h4>
                       <p className='fs-3'>Titolo Originale: {serie.original_name}</p>
                       <p>Lingua: <ReactCountryFlag className="emojiFlag" countryCode={countryFlag(serie.original_language)} svg /></p>
-                      <p>Voto: {serie.vote_average}</p>
+                      <p>Voto: {Math.ceil(serie.vote_average) / 2}/5</p>
                     </div>
                   </div>
                 </div>
