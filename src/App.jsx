@@ -14,7 +14,8 @@ function App() {
   const series_api_url = `https://api.themoviedb.org/3/search/tv?api_key=${api_key}&query=${searchTerms}`
 
 
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    e.preventDefault()
 
     if (searchTerms.trim() === '') {
       setFilms([]);
@@ -140,28 +141,26 @@ function App() {
   return (
     <>
       <header>
-        <nav className="navbar m-4">
-          <div className="container">
-            <a href="https://fontmeme.com/fonts/one-piece-manga-font/"><img src="https://fontmeme.com/permalink/250729/f31b4a3dfbe193545ccbe23920ec7db0.png" alt="one-piece-manga-font" border="0" /></a>
+        <nav className="navbar navbar-expand-lg p-4">
+          <div className="container-fluid">
+            <a className="navbar-brand" href="https://fontmeme.com/one-piece-font/"><img src="https://fontmeme.com/permalink/250730/185e11edf4f20e69fe19536f8ce5c067.png" alt="one-piece-font" border="0" /></a>
+            <form onChange={handleSearch} className="d-flex">
+              <input className="form-control me-3" type="search" placeholder="Cerca un film o una serie" value={searchTerms} onChange={(e) => setSearchTerms(e.target.value)} />
+            </form>
           </div>
         </nav>
       </header>
       <main>
         <div className="section m-5">
-          <div className="container">
-            <div className="form">
-              <input className="form-control-lg m-2 p-2" type="text" value={searchTerms} onChange={(e) => setSearchTerms(e.target.value)} placeholder='Cerca un film o una serie TV' />
-              <button className="btn btn-primary btn-lg " role="button" onClick={handleSearch}>Cerca</button>
-            </div>
-
-            <div className="row row-cols-1 row-cols-md-3 g-4">
+          <div className="container-fluid">
+            <div className="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-4">
               {films.map(film => (
                 <div className="col" key={film.id}>
-                  <div className="card">
+                  <div className="card h-100">
                     <img className="card-img-top" src={`https://image.tmdb.org/t/p/w342${film.poster_path}`} alt={film.title} />
                     <div className="card-body">
                       <h4>{film.title}</h4>
-                      <p className='fs-3'>Titolo Originale: {film.original_title}</p>
+                      <p className='fs-5'>Titolo Originale: {film.original_title}</p>
 
                       <p>Lingua: <ReactCountryFlag className="emojiFlag" countryCode={countryFlag(film.original_language)} svg /></p>
 
