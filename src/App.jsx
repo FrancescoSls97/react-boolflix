@@ -172,7 +172,7 @@ function App() {
               ))}
               {series.map(serie => (
                 <div className="col" key={serie.id}>
-                  <div className="card">
+                  <div className="card h-100">
                     <img className="card-img-top" src={`https://image.tmdb.org/t/p/w342${serie.poster_path}`} alt={serie.name} />
                     <div className="card-body">
                       <h4>{serie.name}</h4>
