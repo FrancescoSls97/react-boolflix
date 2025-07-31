@@ -14,8 +14,8 @@ body{
     background-color: gray;
 }
 
-.card {
 
+.card {
     position: relative;
 }
 .card-body{
@@ -23,14 +23,15 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    transition: opacity .3s;
+    transition: opacity .2s;
 }
 
 .card:hover{
     .card-body{
-    /*display: block;*/
-    opacity: 100%;
+    opacity: 85%;
     color: #fff;
     background: #000;
+    overflow: hidden;
     }
 }
+

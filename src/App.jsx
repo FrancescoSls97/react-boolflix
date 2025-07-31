@@ -165,6 +165,13 @@ function App() {
         </nav>
       </header>
       <main>
+        <div id='jumbo' className="p-2 mb-4 bg-light rounded-3">
+          <div className="container py-5 text-center">
+            <p className="col-md-8 fs-2">Benvenuto su PirateFlix</p>
+            <p className="col-md-8 fs-2">Cerca e guarda i tuoi film o serie TV preferite dal nostro fornitissimo catalogo</p>
+          </div>
+        </div>
+
         <div className="section m-5">
           <div className="container-fluid">
             <div className="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-4">
